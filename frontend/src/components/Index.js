@@ -12,7 +12,12 @@ import {
 
 
 export default function Index(props) {
-    const { isLoggedIn, setLoggedIn } = props
+  const { isLoggedIn, setLoggedIn } = props;
+    
+  if(localStorage.getItem('token')){
+        setLoggedIn(true);
+  }
+    // console.log(isLoggedIn);
     return (
         <div>
             <Header isLoggedIn={isLoggedIn} />

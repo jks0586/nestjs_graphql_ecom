@@ -55,6 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
+console.log(localStorage.getItem('token'));
 export default function SearchAppBar({isLoggedIn}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -71,7 +72,7 @@ export default function SearchAppBar({isLoggedIn}) {
         formData.append("video", video);
         formData.append("cover", cover);
         const token = localStorage.getItem('token');
-        await axios.post("http://localhost:3002/api/v1/video", formData, {
+        await axios.post("http://localhost:3000/api/v1/video", formData, {
             headers: ({
                 Authorization: 'Bearer ' + token
             })
@@ -100,62 +101,59 @@ export default function SearchAppBar({isLoggedIn}) {
                             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                             </Avatar>
                             <div>
-                                <Button variant="contained" onClick={handleOpen}>Add New</Button>
-                                <Modal
-                                    open={open}
-                                    onClose={handleClose}
-                                    aria-labelledby="modal-modal-title"
-                                    aria-describedby="modal-modal-description"
-                                >
-                                    <Box sx={style}>
-                                        <Typography id="modal-modal-title" variant="h6" component="h2">
-                                            <Box component="form" onSubmit={submitForm} noValidate sx={{ mt: 1 }}>
-                                                <label>Video Title:</label>
-                                                <TextField
-                                                    margin="normal"
-                                                    required
-                                                    fullWidth
-                                                    id="title"
-                                                    name="title"
-                                                    autoFocus
-                                                    onChange={(e) => setTitle(e.target.value)}
-                                                />
-                                                <label>Select Video:</label>
-                                                <TextField
-                                                    margin="normal"
-                                                    required
-                                                    fullWidth
-                                                    id="video"
-                                                    name="video"
-                                                    autoFocus
-                                                    type="file"
-                                                    onChange={(e) => setVideo(e.target.files[0])}
-                                                />
-                                                <label>Select Cover Image:</label>
-                                                <TextField
-                                                    autoFocus
-                                                    margin="normal"
-                                                    required
-                                                    fullWidth
-                                                    name="coverImage"
-                                                    type="file"
-                                                    id="coverImage"
-                                                    onChange={(e) => setCover(e.target.files[0])}
-                                                />
-                                                <Button
-                                                    type="submit"
-                                                    fullWidth
-                                                    variant="contained"
-                                                    sx={{ mt: 3, mb: 2 }}
-                                                >
-                                                    Upload
-                                                </Button>
-                                            </Box>
-                                        </Typography>
+                            <Button variant="contained" onClick={handleOpen}>Add New</Button>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                            <Box sx={style}>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    <Box component="form" onSubmit={submitForm} noValidate sx={{ mt: 1 }}>
+                                        <label>Video Title:</label>
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="title"
+                                            name="title"
+                                            autoFocus
+                                            onChange={(e) => setTitle(e.target.value)}
+                                        />
+                                        <label>Select Video:</label>
+                                        <TextField
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            id="video"
+                                            name="video"
+                                            autoFocus
+                                            type="file"
+                                            onChange={(e) => setVideo(e.target.files[0])}
+                                        />
+                                        <label>Select Cover Image:</label>
+                                        <TextField
+                                            autoFocus
+                                            margin="normal"
+                                            required
+                                            fullWidth
+                                            name="coverImage"
+                                            type="file"
+                                            id="coverImage"
+                                            onChange={(e) => setCover(e.target.files[0])}
+                                        />
+                                        <Button
+                                            type="submit"
+                                            fullWidth
+                                            variant="contained"
+                                            sx={{ mt: 3, mb: 2 }}
+                                        >Upload</Button>
                                     </Box>
-                                </Modal>
-                            </div>
-
+                                </Typography>
+                            </Box>
+                        </Modal>
+                        </div>
                         </>
                     }
                 </Toolbar>

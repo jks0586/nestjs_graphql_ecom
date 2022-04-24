@@ -8,6 +8,8 @@ export class User {
     email: string;
     @Prop({required:true})
     password: string
+    @Prop({default:'0'})
+    is_admin: Number
     @Prop({default: Date.now() })
     createdDate: Date
 }

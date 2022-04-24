@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
+import AuthService from './../../services/authservice';
 import { useNavigate } from "react-router-dom"
 
 const theme = createTheme();
@@ -26,11 +26,14 @@ export default function SignIn(props) {
       email: formData.get('email'),
       password: formData.get('password')
     };
-    const { data } = await axios.post("http://localhost:3002/api/v1/user/signin", form);
+    // const { data } = await axios.post("http://localhost:3000/api/v1/user/signin", form);
+    const { data } = await AuthService.SignIn(form);
     if (data.status === parseInt('401')) {
       setErrorMessage(data.response)
     } else {
+      // console.log(data);
       localStorage.setItem('token', data.token);
+      localStorage.setItem('is_admin', data.user._is_admin);
       setIsLoggedIn(true)
       navigate('/video')
     }

@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
+import AuthService from './../../services/authservice';
 import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
@@ -39,7 +39,8 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password')
     };
-    await axios.post("http://localhost:3002/api/v1/user/signup", form);  
+    AuthService.SignUp(form);
+    // await axios.post("http://localhost:3000/api/v1/user/signup", form);  
     navigate('/')
   };
 

@@ -30,6 +30,7 @@ export class UserService {
                 const payload = { email: user.email };
                 return {
                     token: jwt.sign(payload),
+                    user:foundUser,
                 };
             }
             return new HttpException('Incorrect username or password', HttpStatus.UNAUTHORIZED)

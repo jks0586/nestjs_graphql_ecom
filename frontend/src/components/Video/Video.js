@@ -8,7 +8,7 @@ import Grid from '@mui/material/Grid';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-export default function VideoList({ setLoggedIn }) {
+export default function Video({ setLoggedIn }) {
     const { id } = useParams();
     const navigate = useNavigate()
     const [videoId] = React.useState(id);
@@ -18,7 +18,7 @@ export default function VideoList({ setLoggedIn }) {
         async function fetchData() {
             try {
                 const token = localStorage.getItem('token');
-                const {data} = await axios.get(`http://127.0.0.1:3002/api/v1/video?id=${videoId}`, {
+                const {data} = await axios.get(`http://127.0.0.1:3000/api/v1/video?id=${videoId}`, {
                     headers: ({
                         Authorization: 'Bearer ' + token
                     })
@@ -38,7 +38,7 @@ export default function VideoList({ setLoggedIn }) {
             <Card sx={{ display: 'flex' }}>
                 <CardContent sx={{ flex: 1 }}>
                     <video autoPlay controls width='200'>
-                        <source src={`http://localhost:3002/api/v1/video/${videoId}`} type='video/mp4' />
+                        <source src={`http://localhost:3000/api/v1/video/${videoId}`} type='video/mp4' />
                     </video>
                 </CardContent>
             </Card>

@@ -24,7 +24,7 @@ import { isAuthenticated } from './app.middleware';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/Stream'),
+    MongooseModule.forRoot('mongodb://localhost:27017/nestjs_ecom'),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: Video.name, schema: VideoSchema }]),
     JwtModule.register({
