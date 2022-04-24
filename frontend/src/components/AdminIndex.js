@@ -1,6 +1,6 @@
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
-import Header from "./Navbar/Header";
+
 import VideoList from "./Video/VideoList";
 import Video from "./Video/Video";
 import {
@@ -11,12 +11,13 @@ import {
 
 
 
-export default function Index(props) {
+export default function AdminIndex(props) {
+    
   const { isLoggedIn, setLoggedIn} = props;
   
     return (
+
         <div>
-            <Header isLoggedIn={isLoggedIn} />
             <BrowserRouter>
                 {isLoggedIn ?
                     <Routes>

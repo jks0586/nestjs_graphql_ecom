@@ -19,6 +19,9 @@ import { UserController } from './controller/user.controller';
 import { Video, VideoSchema } from './model/video.schema';
 import { User, UserSchema } from './model/user.schema';
 import { isAuthenticated } from './app.middleware';
+import { CategoryController } from './controller/category.controller';
+import { CategoryService } from './service/category.service';
+import { Category, CategorySchema } from './model/category.schema';
 
 
 
@@ -27,6 +30,7 @@ import { isAuthenticated } from './app.middleware';
     MongooseModule.forRoot('mongodb://localhost:27017/nestjs_ecom'),
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: Video.name, schema: VideoSchema }]),
+    MongooseModule.forFeature([{ name: Category.name, schema: CategorySchema }]),
     JwtModule.register({
       secret,
       signOptions: { expiresIn: '2h' },
@@ -47,8 +51,8 @@ import { isAuthenticated } from './app.middleware';
       rootPath: join(__dirname, '..', 'public'),
     }),
   ],
-  controllers: [AppController, VideoController, UserController],
-  providers: [AppService, VideoService, UserService],
+  controllers: [AppController, VideoController, UserController, CategoryController],
+  providers: [AppService, VideoService, UserService,CategoryService,]
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {

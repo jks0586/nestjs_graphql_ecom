@@ -18,14 +18,16 @@ export default function Video({ setLoggedIn }) {
         async function fetchData() {
             try {
                 const token = localStorage.getItem('token');
+                
                 const {data} = await axios.get(`http://127.0.0.1:3000/api/v1/video?id=${videoId}`, {
                     headers: ({
                         Authorization: 'Bearer ' + token
                     })
                 });
+                console.log(data);
                 setVideoInfo(data)
             } catch {
-                setLoggedIn(false);
+                // setLoggedIn(false);
                 navigate('/')
             }
         }
@@ -37,7 +39,7 @@ export default function Video({ setLoggedIn }) {
         <CardActionArea component="a" href="#">
             <Card sx={{ display: 'flex' }}>
                 <CardContent sx={{ flex: 1 }}>
-                    <video autoPlay controls width='200'>
+                    <video autoPlay controls width='100%'>
                         <source src={`http://localhost:3000/api/v1/video/${videoId}`} type='video/mp4' />
                     </video>
                 </CardContent>

@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
 }));
 
-console.log(localStorage.getItem('token'));
+// console.log(localStorage.getItem('token'));
 export default function SearchAppBar({isLoggedIn}) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
