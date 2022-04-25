@@ -10,6 +10,12 @@ export class UserController {
         private jwtService: JwtService
     ) { }
 
+    @Get()
+    async getAll(@Res() response) {
+        const userlist = await this.userServerice.listall();
+        return response.status(HttpStatus.CREATED).json(userlist)
+    }
+
     @Post('/signup')
     async Signup(@Res() response, @Body() user: User) {
         const newUSer = await this.userServerice.signup(user);

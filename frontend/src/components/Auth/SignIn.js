@@ -33,7 +33,7 @@ export default function SignIn(props) {
     } else {
       // console.log(data);
       localStorage.setItem('token', data.token);
-      localStorage.setItem('is_admin', data.user._is_admin);
+      localStorage.setItem('is_admin', data.user.is_admin);
       setIsLoggedIn(true)
       navigate('/video')
     }

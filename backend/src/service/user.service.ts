@@ -10,6 +10,10 @@ export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
     ) { }
 
+    async listall(){
+        const allusers = await this.userModel.find().exec();
+        return allusers;
+    }
     async signup(user: User): Promise<User> {
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(user.password, salt);

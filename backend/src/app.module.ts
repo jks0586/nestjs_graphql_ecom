@@ -1,4 +1,4 @@
-import { Module , RequestMethod, MiddlewareConsumer} from '@nestjs/common';
+import { Module, RequestMethod, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -19,12 +19,10 @@ import { UserController } from './controller/user.controller';
 import { Video, VideoSchema } from './model/video.schema';
 import { User, UserSchema } from './model/user.schema';
 import { isAuthenticated } from './app.middleware';
-import { CategoryController } from './controller/category.controller';
+// import { CategoryController } from './controller/category.controller';
 import { CategoryService } from './service/category.service';
 import { Category, CategorySchema } from './model/category.schema';
-
-
-
+import { CategoriesModule } from './categories/categories.module';
 @Module({
   imports: [
     MongooseModule.forRoot('mongodb://localhost:27017/nestjs_ecom'),
@@ -50,8 +48,9 @@ import { Category, CategorySchema } from './model/category.schema';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
     }),
+    CategoriesModule,
   ],
-  controllers: [AppController, VideoController, UserController, CategoryController],
+  controllers: [AppController, VideoController, UserController],
   providers: [AppService, VideoService, UserService,CategoryService,]
 })
 export class AppModule {

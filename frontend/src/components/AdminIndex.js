@@ -1,6 +1,6 @@
 import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
-
+import AdminLeft from "./Admin/Layout/AdminLeft";
 import VideoList from "./Video/VideoList";
 import Video from "./Video/Video";
 import {
@@ -16,14 +16,15 @@ export default function AdminIndex(props) {
   const { isLoggedIn, setLoggedIn} = props;
   
     return (
-
-        <div>
+        <div className="container1">
+            <AdminLeft />
+            <div className="content-page">
             <BrowserRouter>
                 {isLoggedIn ?
                     <Routes>
-                        <Route path="/video" element={<VideoList setLoggedIn={setLoggedIn}/>}>
+                        <Route path="/admin/video" element={<VideoList setLoggedIn={setLoggedIn}/>}>
                         </Route>
-                        <Route path="/video/:id" element={<Video setLoggedIn={setLoggedIn}/>}>
+                        <Route path="/admin/video/:id" element={<Video setLoggedIn={setLoggedIn}/>}>
                         </Route>
                     </Routes>
                     :
@@ -35,6 +36,7 @@ export default function AdminIndex(props) {
                     </Routes>
                 }
             </BrowserRouter>
+            </div>
         </div>
     )
 }
